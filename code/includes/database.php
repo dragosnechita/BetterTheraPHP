@@ -1,12 +1,30 @@
 <?php
-$pdo = new PDO('mysql:host=mysql;dbname=bettertherapy;', 'better', 'base2', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-$query = $pdo->query('SHOW VARIABLES like "version"');
+$host = 'better_database';
+$database = 'bettertherapy';
+$user = 'better';
+$pass = 'base2';
+$charset = 'utf8mb4';
 
-$row = $query->fetch();
+$dsn = "mysql:host=$host;dbname=$database;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE               => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE    => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES      => false,
+];
 
-echo 'MySQL version:' . $row['Value'];
-echo "does not work";
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+
+$stmt = $pdo->query('SELECT firstName FROM client');
+while ($row = $stmt->fetch())
+{
+    echo $row['firstName'] . "\n";
+}
+
 ?>
 
 
