@@ -1,4 +1,4 @@
-<footer class="page-footer font-small blue pt-4">
+<footer class="admin-footer-box">
     <div class="container-fluid text-center text-md-left">
     Footer for the admin goes here
     </div>

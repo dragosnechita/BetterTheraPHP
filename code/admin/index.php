@@ -2,16 +2,16 @@
 <?php include '../models.php'?>
 <div class="container">
     <div class="row">
-        <div class="col-2 admin-navbar">
+        <div class="col-2 admin-box">
 
         <?php include 'includes/admin_navigation.php' ?>
 
         </div>
-        <div class="col-8">
-            <?php include 'views/client_list.php'?>
+        <div class="col-7 admin-box">
+            <h2>Welcome!</h2>
         </div>
-        <div class="col-2">
-            Admin sidebar goes here
+        <div class="col-2 admin-box">
+        <?php include 'includes/admin_sidebar.php'?>
         </div>
     </div>
 

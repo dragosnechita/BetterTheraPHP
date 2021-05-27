@@ -1,11 +1,12 @@
-<div class="col-2 admin-navbar">
+<div>
     <div class='nav-item'>
-        <button type='button' class='btn btn-primary'>Clients</button>
+        <a href="./clients.php" class='btn btn-primary'>My Clients</a>
     </div>
     <div class='nav-item'>
-        <button type='button' class='btn btn-primary'>Meetings</button>
+        <a href="./meetings.php" class='btn btn-primary'>My Meetings</a>
     </div>
     <div class='nav-item'>
-        <button type='button' class='btn btn-primary'>Notes</button>
+        <a href="./notes.php" class='btn btn-primary'>My Notes</a>
     </div>
+
 </div>
