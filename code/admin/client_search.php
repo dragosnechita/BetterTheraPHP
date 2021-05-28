@@ -46,9 +46,7 @@ if(isset($_GET['submit'])) {
                 </thead>
             </table>
         </div>
-        <div class="col-2 admin-box">
             <?php include 'includes/admin_sidebar.php';?>
-        </div>
     </div>
 
 </div>

@@ -36,6 +36,16 @@ function getClientDetails($client_id) {
     return $result;
 };
 
+function addClient($fname, $lname, $phone, $email, $password, $therapist) {
+    global $pdo;
+    $createdAt = date('Y-m-d')." ".date('h:i:s');
+    $lastSeen = $createdAt;
+    $add_client = $pdo->prepare
+    ('INSERT INTO client (firstName, lastName, phone, email, password, createdAt, lastSeen, therapist)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    $add_client->execute([$fname, $lname, $phone, $email, $password, $createdAt, $lastSeen, $therapist]);
+};
+
 function getClientMeetings($clientId, $therapistId) {
     global $pdo;
     $meetingList = $pdo->prepare('SELECT * from meeting WHERE client = ? AND therapist = ?');
@@ -73,6 +83,15 @@ function searchClients($input, $therapist) {
     $input = "%$input%";
     $clients = $pdo->prepare('SELECT * from client WHERE therapist = ? AND (firstName LIKE ? OR lastName LIKE ?)');
     $clients->execute([$therapist, $input, $input]);
+    $result = $clients->fetchAll();
+    return $result;
+}
+
+function searchNotes($input, $therapist) {
+    global $pdo;
+    $input = "%$input%";
+    $clients = $pdo->prepare('SELECT * from notes WHERE therapist = ? AND (content LIKE ?)');
+    $clients->execute([$therapist, $input]);
     $result = $clients->fetchAll();
     return $result;
 }

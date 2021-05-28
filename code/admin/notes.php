@@ -26,9 +26,7 @@ $notes = getTherapistNotes($therapist);?>
                     <div class="row separator"></div>
                 <?php } ?>
             </div>
-            <div class="col-2">
-                Admin sidebar goes here
-            </div>
+            <?php include 'includes/admin_sidebar.php'?>
         </div>
 
     </div>

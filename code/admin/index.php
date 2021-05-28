@@ -10,9 +10,7 @@
         <div class="col-7 admin-box">
             <h2>Welcome!</h2>
         </div>
-        <div class="col-2 admin-box">
         <?php include 'includes/admin_sidebar.php'?>
-        </div>
     </div>
 
 </div>

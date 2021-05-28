@@ -7,12 +7,12 @@ $therapist = '1';
 $meetings = getClientMeetings($client, $therapist);?>
 <div class="container">
     <div class="row">
-        <div class="col-2 admin-navbar">
+        <div class="col-2 admin-box">
 
             <?php include 'includes/admin_navigation.php' ?>
 
         </div>
-        <div class="col-6 admin-content">
+        <div class="col-7 admin-box">
             <?php foreach ($meetings as $meeting) { ?>
                 <div class="row"><h4>Meeting No. <?php echo $meeting['clientNo'];?></h4></div>
                 <div class="row"><h5>Date & time <?php echo $meeting['dateTime'];?></h5></div>
@@ -20,10 +20,9 @@ $meetings = getClientMeetings($client, $therapist);?>
                 <div class="container separator"></div>
             <?php } ?>
         </div>
-        <div class="col-2">
-            Admin sidebar goes here
-        </div>
+            <?php include 'includes/admin_sidebar.php';?>
     </div>
+
 
 </div>
 
