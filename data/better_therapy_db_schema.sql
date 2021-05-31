@@ -1,10 +1,12 @@
-CREATE TABLE supervisor (  
+CREATE SCHEMA bettertherapy;
+
+CREATE TABLE supervisor (
     id int NOT NULL primary key AUTO_INCREMENT,
     firstName varchar(50),
     lastName varchar(50),
     phone char(10),
     email varchar(50),
-    password text NOT NULL,
+    password varchar(255) NOT NULL DEFAULT 'PASSWORD',
     createdAt DATETIME,
     shortDesc varchar(250)
 );
@@ -15,7 +17,7 @@ CREATE TABLE therapist (
     lastName varchar(50),
     phone char(10),
     email varchar(50),
-    password text NOT NULL,
+    password varchar(255) NOT NULL DEFAULT 'PASSWORD',
     createdAt DATETIME,
     shortDesc varchar(250),
     supervisor int,
@@ -28,29 +30,34 @@ CREATE TABLE client (
     lastName varchar(50),
     phone char(10),
     email varchar(50),
-    password text NOT NULL,
+    password varchar(255) NOT NULL DEFAULT 'PASSWORD',
     createdAt DATETIME,
     lastSeen DATETIME,
     therapist int,
     FOREIGN KEY (therapist) REFERENCES therapist(id)
 );
 
+
 CREATE TABLE meeting (  
     id int NOT NULL primary key AUTO_INCREMENT,
-    client int,
-    FOREIGN KEY (client) REFERENCES client(id),
-    therapist int,
-    FOREIGN KEY (therapist) REFERENCES therapist(id),
+    client int DEFAULT 0,
+    FOREIGN KEY (client) REFERENCES client(id) ON DELETE SET DEFAULT,
+    therapist int DEFAULT 0,
+    FOREIGN KEY (therapist) REFERENCES therapist(id) ON DELETE SET DEFAULT,
     clientNo int NOT NULL,
     dateTime DATETIME,
     duration int NOT NULL DEFAULT 50
     );
 
+ALTER TABLE meeting ALTER client SET DEFAULT 0;
+
+ALTER TABLE meeting ADD FOREIGN KEY (client) REFERENCES client(id) ON DELETE SET DEFAULT;
+
 CREATE TABLE assignment (  
     id int NOT NULL primary key AUTO_INCREMENT,
     client int,
     FOREIGN KEY (client) REFERENCES client(id),
-    therapist int,
+    therapist int DEFAULT 0,
     FOREIGN KEY (therapist) REFERENCES therapist(id),
     clientNo int NOT NULL,
     dateTime DATETIME,
@@ -73,20 +80,20 @@ ALTER TABLE meeting
     ADD assign_pre int;
 
 ALTER TABLE meeting 
-    ADD FOREIGN KEY (assign_pre) REFERENCES assignment(id);
+    ADD FOREIGN KEY (assign_pre) REFERENCES assignment(id) ON DELETE SET DEFAULT;
 
 
 ALTER TABLE meeting
     ADD assign_post int;
     
 ALTER TABLE meeting 
-    ADD FOREIGN KEY (assign_post) REFERENCES assignment(id);
+    ADD FOREIGN KEY (assign_post) REFERENCES assignment(id) ON DELETE SET DEFAULT;
 
 ALTER TABLE notes
     ADD meeting int;
 
 ALTER TABLE notes 
-    ADD FOREIGN KEY (meeting) REFERENCES meeting(id);
+    ADD FOREIGN KEY (meeting) REFERENCES meeting(id) ON DELETE SET DEFAULT;
 
     INSERT INTO supervisor (firstName, lastName, phone, email, createdAt, shortDesc)
 VALUES ('Super1', 'Super1', 1234567890, 'email1@email.com', '2020.05.02 00:00:01', 'Super1 test description'),

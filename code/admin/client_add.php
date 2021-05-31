@@ -8,20 +8,9 @@
 
         </div>
         <div class="col-7 admin-box">
-            <?php if(isset($_POST['submit'])) {
 
-                addClient($_POST['client-fname'],
-                    $_POST['client-lname'],
-                    $_POST['client-phone'],
-                    $_POST['client-email'],
-                    'default',
-                '1');
-            };
-            echo 'New client added';
-
-            ?>
             <h4>Add a new Client:</h4>
-            <form action="" method="post">
+            <form action="clients.php" method="post">
                 <div class="form-group">
                     <label for="client-fname">First Name</label>
                     <input type="text" class="form-control" name="client-fname">
@@ -31,7 +20,7 @@
                     <input type="text" class="form-control" name="client-phone">
                     <label for="client-email">Email</label>
                     <input type="email" class="form-control" name="client-email">
-                    <input type="submit" class="btn-primary" name="submit"></input>
+                    <input type="submit" class="btn-primary" name="add"></input>
                 </div>
 
 

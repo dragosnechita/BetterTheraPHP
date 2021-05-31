@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <?php include 'includes/admin_header.php' ?>
 <?php include '../models.php'?>
 <div class="container">

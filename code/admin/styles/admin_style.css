@@ -45,9 +45,21 @@
     box-shadow: 5px 5px 15px rgb(230, 230, 250);
 }
 
+.btn-danger {
+    background: rgb(250, 200, 200);
+    color:darkred;
+    border: 0px solid gray;
+    box-shadow: 5px 5px 15px rgb(230, 230, 250);
+}
+
 .separator {
     height: 1px;
     background: black;
+    margin: 1vh 3vh 5vh 3vh;
+}
+
+.empty-space {
+    height: 1px;
     margin: 1vh 3vh 5vh 3vh;
 }
 

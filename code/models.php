@@ -46,6 +46,21 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
     $add_client->execute([$fname, $lname, $phone, $email, $password, $createdAt, $lastSeen, $therapist]);
 };
 
+function updateClient($fname, $lname, $phone, $email, $password, $id) {
+    global $pdo;
+    $update_client = $pdo->prepare
+    ('UPDATE client SET firstName = ?, lastName = ?, phone = ?, email = ?, password = ?
+WHERE  id = ?');
+    $update_client->execute([$fname, $lname, $phone, $email, $password, $id]);
+};
+
+function deleteClient($id) {
+    global $pdo;
+    $delete_client = $pdo->prepare('DELETE FROM client WHERE id = ?');
+    $delete_client->execute([$id]);
+};
+
+
 function getClientMeetings($clientId, $therapistId) {
     global $pdo;
     $meetingList = $pdo->prepare('SELECT * from meeting WHERE client = ? AND therapist = ?');
