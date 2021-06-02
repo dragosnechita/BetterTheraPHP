@@ -79,11 +79,42 @@ function getMeetingDetails($meetingId) {
 
 function getMeetings($therapistId) {
     global $pdo;
-    $meetings = $pdo->prepare('SELECT * from meeting WHERE therapist = ?');
+    $meetings = $pdo->prepare('SELECT * from meeting WHERE therapist = ? ORDER BY client, clientNo');
     $meetings->execute([$therapistId]);
     $result = $meetings->fetchAll();
     return $result;
 }
+
+function getClientNo($therapistId, $clientId) {
+    global $pdo;
+    $clientNo = $pdo->prepare('SELECT clientNo from meeting WHERE therapist = ? and client = ? ORDER BY clientNo');
+    $clientNo->execute([$therapistId, $clientId]);
+    $clientCurrent = $clientNo->fetch();
+    $result = intval(end($clientCurrent)) + 1;
+    return $result;
+}
+
+function addMeeting($client, $therapist, $clientNo, $dateTime, $duration) {
+    global $pdo;
+    $meeting = $pdo->prepare(
+        'INSERT INTO meeting (client, therapist, clientNo, dateTime, duration)
+VALUES (?, ?, ?, ?, ?)');
+    $meeting->execute([$client, $therapist, $clientNo, $dateTime, $duration]);
+}
+
+function deleteMeeting($meetingId) {
+    global $pdo;
+    $delete_meeting = $pdo->prepare('DELETE FROM meeting WHERE id = ?');
+    $delete_meeting->execute([$meetingId]);
+
+}
+
+function updateMeeting($id, $client, $dateTime, $duration) {
+    global $pdo;
+    $update_meeting = $pdo->prepare
+    ('UPDATE meeting SET client = ?, dateTime = ?, duration = ? WHERE  id = ?');
+    $update_meeting->execute([$client, $dateTime, $duration, $id]);
+};
 
 function getTherapistNotes($therapistId) {
     global $pdo;
@@ -91,6 +122,18 @@ function getTherapistNotes($therapistId) {
     $notesList->execute([$therapistId]);
     $result = $notesList->fetchAll();
     return $result;
+}
+
+function getMeetingNotes($meetingId) {
+    global $pdo;
+    $notesList = $pdo->prepare('SELECT * from notes WHERE meeting = ?');
+    $notesList->execute([$meetingId]);
+    $result = $notesList->fetchAll();
+    return $result;
+}
+
+function getNote ($noteId) {
+    return 'success';
 }
 
 function searchClients($input, $therapist) {
@@ -109,4 +152,8 @@ function searchNotes($input, $therapist) {
     $clients->execute([$therapist, $input]);
     $result = $clients->fetchAll();
     return $result;
+}
+
+function getTherapist() {
+    return '1';
 }

@@ -3,7 +3,7 @@
 <?php
 
 $client = $_GET['id'];
-$therapist = '1';
+$therapist = getTherapist();
 
 
 $clientDetails = getClientDetails($client, $therapist);
@@ -46,7 +46,7 @@ $clientMeetings = getClientMeetings($client, $therapist);?>
             <?php foreach ($clientMeetings as $meeting) { ?>
                 <div class="row"><h5>Meeting No. <?php echo $meeting['clientNo'];?></h5></div>
                 <div class="row"><h6>Date & time <?php echo $meeting['dateTime'];?></h6></div>
-                <div class="row"><h6><a href="#" class="btn btn-info">See Meeting Details</a></h6></div>
+                <div class="row"><h6><a href="meeting_details.php?id=<?php echo $meeting['id'];?>" class="btn btn-info">See Meeting Details</a></h6></div>
                 <div class="separator"></div>
             <?php } ?>
         </div>
