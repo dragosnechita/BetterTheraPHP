@@ -1,5 +1,5 @@
 <?php include 'includes/admin_header.php' ?>
-<?php include '../models.php'?>
+<?php include '../functions.php' ?>
 <?php
 
 $client = $_GET['id'];

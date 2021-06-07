@@ -1,5 +1,5 @@
 <?php include 'includes/admin_header.php' ?>
-<?php include '../models.php'?>
+<?php include '../functions.php' ?>
 <?php if(isset($_GET['update'])) {
     $meeting = getMeetingDetails($_GET['update']);
     $meetingDateTime = $meeting['dateTime'];

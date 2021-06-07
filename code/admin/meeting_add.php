@@ -1,5 +1,5 @@
 <?php include 'includes/admin_header.php' ?>
-<?php include '../models.php'?>
+<?php include '../functions.php' ?>
 <div class="container">
     <div class="row">
         <div class="col-2 admin-box">

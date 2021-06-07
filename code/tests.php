@@ -1,4 +1,4 @@
-<?php include 'models.php';
+<?php include 'functions.php';
 
 // function test
 $output = getClientMeetings('1', '1');

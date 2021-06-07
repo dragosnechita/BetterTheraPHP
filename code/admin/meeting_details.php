@@ -1,5 +1,5 @@
 <?php include 'includes/admin_header.php' ?>
-<?php include '../models.php'?>
+<?php include '../functions.php' ?>
 <?php
 
 $meetingId = $_GET['id'];
@@ -9,6 +9,15 @@ $therapist = '1';
 $meetingDetails = getMeetingDetails($meetingId);
 $meetingId = $meetingDetails['id'];
 $clientDetails = getClientDetails($meetingDetails['client']);
+
+if (isset($_POST['add_note'])) {
+    addNote($_POST['note-client'],
+        $_POST['note-therapist'],
+        $_POST['note-meeting'],
+        $_POST['note-content']
+    );
+}
+
 
 $meetingNotes = getMeetingNotes($meetingId);?>
 <div class="container">
@@ -58,6 +67,8 @@ $meetingNotes = getMeetingNotes($meetingId);?>
                 <?php }
                 ?>
                 </div>
+            <div class="empty-space"></div>
+                <div class="col"><a href="notes_add.php?id=<?php echo $meetingId;?>&client=<?php echo $meetingDetails['client'];?>" class="btn btn-info">Add a note</a></div>
             <div class="empty-space"></div>
             <div class="row">
                 <div class="col"><a href="meeting_update.php?update=<?php echo $meetingId;?>" class="btn btn-info">Update Meeting Data</a></div>

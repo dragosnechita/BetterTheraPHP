@@ -1,6 +1,30 @@
 <?php ob_start(); ?>
+<?php session_start();?>
+<?php include '../functions.php' ?>
+
+
+<?php
+if (isset($_POST['login'])) {
+    $userType = $_POST['user-type'];
+    $userName = $_POST['user'];
+    $password = $_POST['password'];
+    $active_user = getUserCredentials($userType, $userName, $password);
+
+}
+
+
+
+if ($active_user) {
+    $userName = $active_user['firstName'];
+    $
+} else {
+    header("Location: login.php?message=not-exist");
+}
+
+?>
+
+
 <?php include 'includes/admin_header.php' ?>
-<?php include '../models.php'?>
 <div class="container">
     <div class="row">
         <div class="col-2 admin-box">

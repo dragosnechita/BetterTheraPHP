@@ -9,7 +9,7 @@
             <?php foreach ($clients as $client) {
                 ?><li>
                 <h5>
-                    <a href="./client_meeting.php?id=<?php echo $client['id'];?>">
+                    <a href="./client_details.php?id=<?php echo $client['id'];?>">
                         <?php echo $client['firstName']." ".$client['lastName']?>
                     </a>
                 </h5>

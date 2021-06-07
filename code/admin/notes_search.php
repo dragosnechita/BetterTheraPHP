@@ -1,6 +1,6 @@
 <?php include 'includes/admin_header.php';?>
 <?php //include 'includes/admin_sidebar.php';?>
-<?php include '../models.php'?>
+<?php include '../functions.php' ?>
 
 <?php
 

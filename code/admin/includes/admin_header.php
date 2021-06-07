@@ -14,6 +14,7 @@
  <!-- take care of the recaptcha <script src="https://www.google.com/recaptcha/api.js"></script> -->
 </head>
 <body>
+
 <div class="container test">
     <div class="row">
         <a class="col-1" href="./index.php">
@@ -25,12 +26,13 @@
         <div class="col-3"></div>
         <div class="col-2 dropdown">
             <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                User Menu
+                Hello <?php echo $userName;?>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="#"><i class="fa fa-fw fa-user"></i>Profile</li>
                 <li><a class="dropdown-item" href="#"><i class="fa fa-fw fa-gear"></i>Settings</li>
-                <li><a class="dropdown-item" href="#"><i class="fa fa-fw fa-power-off"></i>Logout</a></li>
+                <li><a class="dropdown-item" href="./login.php"><i class="fa fa-fw fa-power-off"></i>Login</a></li>
+                <li><a class="dropdown-item" href="./login.php"><i class="fa fa-fw fa-power-off"></i>Login</a></li>
             </ul>
         </div>
         </div>
