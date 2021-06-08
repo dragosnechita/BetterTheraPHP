@@ -17,11 +17,9 @@
                     <input type="hidden" name="note-meeting" value="<?php echo $_GET['id'];?>">
                     <label for="note-content">Note Content:</label>
                     <input type="text" class="form-control" name="note-content">
-                    <input type="submit" class="btn-primary" name="add_note">
+                    <div class="empty-space"></div>
+                    <input type="submit" class="btn-primary" name="add_note" value="Add note">
                 </div>
-
-
-
             </form>
         </div>
         <?php include 'includes/admin_sidebar.php'?>

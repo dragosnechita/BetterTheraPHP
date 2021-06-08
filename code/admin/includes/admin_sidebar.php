@@ -1,4 +1,26 @@
+
+
 <div class="col-2 admin-box">
+    <div class="col-2 dropdown">
+        <?php if(isset($_SESSION['active-user']['id'])) {
+            $menuGreeting = 'Hello '.$_SESSION['active-user']['firstName'];
+        } else {
+            $menuGreeting = 'Log in';
+        };
+        ?>
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $menuGreeting;?>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <?php if(isset($_SESSION['active-user'])) { ?>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-fw fa-user"></i>Profile</li>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-fw fa-gear"></i>Settings</li>
+            <li><a class="dropdown-item" href="./logout.php"><i class="fa fa-fw fa-power-off"></i>Log out</a></li>
+            <?php } else { ?>
+            <li><a class="dropdown-item" href="./login.php"><i class="fa fa-fw fa-power-off"></i>Log in</a></li>
+            <?php }; ?>
+        </ul>
+    </div>
     <h4>Clients</h4>
     <?php
     $therapist = '1';

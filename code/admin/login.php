@@ -11,7 +11,11 @@
             </div>
             <div class="col-7 admin-box">
                 <?php
-                if ($_GET['message'] == 'not-exist') {
+                if (!$_GET) {
+                    echo '<div class="alert alert-info">Hello, to access BetterTherapy, please log in</div>';;
+                } elseif ($_GET['message'] == 'logged-out') {
+                    echo '<div class="alert alert-info">Hello, to access BetterTherapy, please log in</div>';
+                } elseif ($_GET['message'] == 'not-exist') {
                     echo '<div class="alert alert-danger">The user you tried to log in does not exist, please try again</div>';
                 }
                 ?>
@@ -25,7 +29,7 @@
                     </select>
                         <label for="user" value="username">User name (email): </label>
                         <input type="email" name="user" class="form-control" placeholder="email">
-                    <div class="empty-space"></div>
+<!--                    <div class="empty-space"></div>-->
                         <label for="password" value="password">Password: </label>
                         <input type="password" name="password" class="form-control" placeholder="password">
                     <div class="empty-space"></div>
@@ -36,7 +40,7 @@
             </span>
                 </form>
             </div>
-            <?php include 'includes/admin_sidebar.php'?>
+            <?php include 'includes/admin_sidebar.php' ?>
         </div>
 
     </div>

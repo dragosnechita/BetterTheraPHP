@@ -2,7 +2,7 @@
 <?php include '../functions.php' ?>
 <?php
 $client = $_GET['id'];
-$therapist = '1';
+$therapist = getTherapist();
 
 $meetings = getClientMeetings($client, $therapist);?>
 <div class="container">

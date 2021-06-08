@@ -37,7 +37,12 @@ function getSupervisor() {
 
 
 function getTherapist() {
-    return '1';
+    if ($_SESSION['active-user']['user-type'] == 'client' or $_SESSION['active-user']['user-type'] == 'supervisor')  {
+        $therapistId = $_SESSION['active-user']['therapist'];
+    } elseif ($_SESSION['active-user']['user-type'] == 'therapist') {
+        $therapistId = $_SESSION['active-user']['id'];
+    }
+    return $therapistId;
 }
 
 function addTherapist($fname, $lname, $phone, $email, $password, $supervisor) {
@@ -250,16 +255,19 @@ function getUserCredentials ($userType, $userName, $password) {
             $credentials = $pdo->prepare('SELECT * from supervisor WHERE email = ? AND password = ?');
             $credentials->execute([$userName, $password]);
             $result = $credentials->fetch();
+            $result['user-type'] = 'supervisor';
             return $result;
         case 'therapist':
             $credentials = $pdo->prepare('SELECT * from therapist WHERE email = ? AND password = ?');
             $credentials->execute([$userName, $password]);
             $result = $credentials->fetch();
+            $result['user-type'] = 'therapist';
             return $result;
         case 'client':
             $credentials = $pdo->prepare('SELECT * from client WHERE email = ? AND password = ?');
             $credentials->execute([$userName, $password]);
             $result = $credentials->fetch();
+            $result['user-type'] = 'client';
             return $result;
     }
 

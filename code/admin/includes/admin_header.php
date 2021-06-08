@@ -1,4 +1,5 @@
 <?php ob_start(); ?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 
@@ -24,17 +25,6 @@
             <h4 style="color:darkslateblue">Better Therapy - admin section</h4>
         </div>
         <div class="col-3"></div>
-        <div class="col-2 dropdown">
-            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Hello <?php echo $userName;?>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#"><i class="fa fa-fw fa-user"></i>Profile</li>
-                <li><a class="dropdown-item" href="#"><i class="fa fa-fw fa-gear"></i>Settings</li>
-                <li><a class="dropdown-item" href="./login.php"><i class="fa fa-fw fa-power-off"></i>Login</a></li>
-                <li><a class="dropdown-item" href="./login.php"><i class="fa fa-fw fa-power-off"></i>Login</a></li>
-            </ul>
-        </div>
         </div>
 
 </div>
