@@ -140,7 +140,7 @@ function deleteClient($id) {
 
 function getClientMeetings($clientId, $therapistId) {
     global $pdo;
-    $meetingList = $pdo->prepare('SELECT * from meeting WHERE client = ? AND therapist = ?');
+    $meetingList = $pdo->prepare('SELECT * from meeting WHERE client = ? AND therapist = ? ORDER BY clientNo');
     $meetingList->execute([$clientId, $therapistId]);
     $result = $meetingList->fetchAll();
     return $result;
@@ -167,7 +167,11 @@ function getClientNo($therapistId, $clientId) {
     $clientNo = $pdo->prepare('SELECT clientNo from meeting WHERE therapist = ? and client = ? ORDER BY clientNo');
     $clientNo->execute([$therapistId, $clientId]);
     $clientCurrent = $clientNo->fetch();
-    $result = intval(end($clientCurrent)) + 1;
+    if ($clientCurrent == false) {
+        $result = 1;
+    } else {
+        $result = intval(end($clientCurrent)) + 1;
+    }
     return $result;
 }
 
